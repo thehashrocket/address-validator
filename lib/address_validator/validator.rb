@@ -30,6 +30,7 @@ module AddressValidator
         xml.Request do
           xml.RequestAction 'XAV' # must be XAV
           xml.RequestOption '3'   # validation + classification
+          xml.MaximumCandidateListSize '3'
         end
         xml.MaximumListSize(@config.maximum_list_size || 1)
         xml << address.to_xml
