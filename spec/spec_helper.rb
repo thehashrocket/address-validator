@@ -8,7 +8,7 @@ require 'address_validator'
 
 default_config = AddressValidator::Config.new
 config_file = File.expand_path('../config.yml', __FILE__)
-if File.exists?(config_file)
+if File.exist?(config_file)
   API_CONFIG = YAML.load_file(config_file)
   default_config.key = API_CONFIG['access_key']
   default_config.username = API_CONFIG['username']

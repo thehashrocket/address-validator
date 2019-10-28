@@ -14,7 +14,7 @@ describe AddressValidator::Validator do
         zip: '10003',
         country: 'US'
       )
-     end
+    end
 
     describe '#validate' do
       let(:response){ validator.validate(address) }
@@ -51,7 +51,7 @@ describe AddressValidator::Validator do
         zip: '10012',
         country: 'US'
       )
-     end
+    end
 
     describe '#validate' do
       let(:response){ validator.validate(address) }
@@ -82,7 +82,7 @@ describe AddressValidator::Validator do
         zip: '10003',
         country: 'US'
       }
-     end
+    end
 
     describe '#validate' do
       let(:response){ validator.validate(address_hash) }
