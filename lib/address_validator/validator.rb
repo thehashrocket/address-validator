@@ -13,7 +13,6 @@ module AddressValidator
       if address.is_a?(::Hash)
         address = build_address(address)
       end
-
       request = build_request(address)
       @client.post(request)
     end
@@ -28,9 +27,7 @@ module AddressValidator
       xml.instruct!
       xml.AddressValidationRequest do
         xml.Request do
-          xml.RequestAction 'XAV' # must be XAV
-          xml.RequestOption '3'   # validation + classification
-          xml.MaximumCandidateListSize '3'
+          xml.RequestAction 'AV' # must be XAV
         end
         xml.MaximumListSize(@config.maximum_list_size || 1)
         xml << address.to_xml

@@ -24,10 +24,6 @@ module AddressValidator
         address_lines = Array(attrs['AddressLine'])
 
         new(
-          name: attrs['ConsigneeName'],
-          street1: address_lines[0],
-          street2: address_lines[1],
-          street3: address_lines[2],
           city: attrs['PoliticalDivision2'],
           state: attrs['PoliticalDivision1'],
           zip: attrs['PostcodePrimaryLow'],
@@ -38,13 +34,9 @@ module AddressValidator
       end
     end
 
-    attr_accessor :name, :street1, :street2, :street3, :city, :state, :zip, :zip_extended, :country, :classification
+    attr_accessor :city, :state, :zip, :zip_extended, :country, :classification
 
-    def initialize(name: nil, street1: nil, street2: nil, street3: nil, city: nil, state: nil, zip: nil, zip_extended: nil, country: nil, classification: nil)
-      @name = name
-      @street1 = street1
-      @street2 = street2
-      @street3 = street3
+    def initialize(city: nil, state: nil, zip: nil, zip_extended: nil, country: nil, classification: nil)
       @city = city
       @state = state
       @zip = zip
@@ -65,15 +57,10 @@ module AddressValidator
 
       xml = Builder::XmlMarkup.new(options)
 
-      xml.AddressKeyFormat do
-        xml.ConsigneeName(self.name)
-        xml.tag! 'AddressLine', self.street1
-        xml.tag! 'AddressLine', self.street2 if self.street2
-        xml.tag! 'AddressLine', self.street3 if self.street3
-        xml.PoliticalDivision2(self.city)
-        xml.PoliticalDivision1(self.state)
-        xml.PostcodePrimaryLow(self.zip)
-        xml.PostcodeExtendedLow(self.zip_extended)
+      xml.Address do
+        xml.City(self.city)
+        xml.State(self.state)
+        xml.PostalCode(self.zip)
         xml.CountryCode(self.country)
       end
 
