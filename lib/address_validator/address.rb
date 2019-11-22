@@ -59,7 +59,7 @@ module AddressValidator
 
       xml.Address do
         xml.City(self.city)
-        xml.State(self.state)
+        xml.StateProvinceCode(self.state)
         xml.PostalCode(self.zip)
         xml.CountryCode(self.country)
       end

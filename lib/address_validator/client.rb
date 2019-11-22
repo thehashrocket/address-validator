@@ -37,7 +37,6 @@ module AddressValidator
       xml << access_request
       xml << request
       body = xml.target!
-      puts "BODY BODY: #{body}"
       api_response = self.class.post('/ups.app/xml/AV', body: body)
       Response.new(api_response)
     end
